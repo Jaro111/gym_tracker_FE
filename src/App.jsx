@@ -3,8 +3,9 @@ import { useState } from "react";
 import { Navbar } from "./pages/Navbar";
 import { CalendarPage } from "./pages/CalendarPage";
 import { WeekPlanPage } from "./pages/WeekPlanPage";
-import { TrainingPage } from "./pages/TrainingPage";
+import { CreateTraining } from "./pages/CreateTraining";
 import { SchedulePage } from "./pages/SchedulePage";
+import { MyCurrentWorkout } from "./pages/MyCurrentWorkout";
 import { Footer } from "./pages/Footer";
 import "./App.css";
 
@@ -14,7 +15,8 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="" element={<CalendarPage />} />
-        <Route path="/trainingPage" element={<TrainingPage />} />
+        <Route path="/myCurrentWorkout" element={<MyCurrentWorkout />} />
+        <Route path="/createTraining" element={<CreateTraining />} />
         <Route path="/weekPlanPage" element={<WeekPlanPage />} />
         <Route path="/schedulePage" element={<SchedulePage />} />
       </Routes>

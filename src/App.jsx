@@ -10,11 +10,28 @@ import { Footer } from "./pages/Footer";
 import "./App.css";
 
 function App() {
+  //
+  const today = new Date();
+  const day = today.getDate();
+  const month = today.getMonth() + 1;
+  const year = today.getFullYear();
+  //
+  const [dayNow, setDayNow] = useState(day);
+  const [monthNow, setMonthNow] = useState(month);
+  const [yearNow, setYearNow] = useState(year);
+  //
+  const [dateNow, setDateNow] = useState({
+    day: dayNow,
+    month: monthNow,
+    year: yearNow,
+  });
+  //
+
   return (
     <BrowserRouter basename="">
       <Navbar />
       <Routes>
-        <Route path="" element={<CalendarPage />} />
+        <Route path="" element={<CalendarPage dateNow={dateNow} />} />
         <Route path="/myCurrentWorkout" element={<MyCurrentWorkout />} />
         <Route path="/createTraining" element={<CreateTraining />} />
         <Route path="/weekPlanPage" element={<WeekPlanPage />} />

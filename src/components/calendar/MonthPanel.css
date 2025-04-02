@@ -1,5 +1,57 @@
-.month-panel-wrapper {
-  border: 1px solid rgb(235, 120, 26);
-  width: 90%;
-  height: 18%;
+.calendar-month-panel-wrapper {
+  border: 1px solid rgb(219, 219, 219);
+  border-radius: 20px;
+  width: 60%;
+  height: 15%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.calendar-change-month-content {
+  font-size: 30px;
+  font-weight: 900;
+  margin: 2px;
+}
+.calendar-minus-month {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calendar-change-month-content:hover {
+  background-color: rgb(181, 181, 241);
+  cursor: pointer;
+}
+
+.calendar-year-display-content {
+  font-size: 22px;
+}
+
+.calendar-plus-month {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media only screen and (max-width: 700px) {
+  .calendar-change-month-content {
+    font-size: 25px;
+    font-weight: 900;
+    margin: 2px;
+  }
+  .calendar-year-display-content {
+    font-size: 20px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .calendar-change-month-content {
+    font-size: 22px;
+    font-weight: 900;
+    margin: 2px;
+  }
+  .calendar-year-display-content {
+    font-size: 18px;
+  }
 }

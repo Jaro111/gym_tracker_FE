@@ -1,38 +1,81 @@
-.days-panel-warepper {
-  border: 1px solid green;
+.calendar-days-panel-warepper {
+  /* border: 1px solid green; */
   width: 90%;
   height: 80%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   flex-direction: column;
 }
 
-.weekDays-wrapper {
-  border: 1px solid rgb(52, 221, 52);
+.calendar-weekDays-wrapper {
+  /* border: 2% solid rgb(52, 221, 52); */
   width: 100%;
   height: 15%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-end;
   flex-direction: row;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  gap: 2px;
 }
 
-.weekDays-card {
-  width: 14%;
+.calendar-weekDays-card {
+  width: calc(14.2857% - 4px);
   height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid transparent;
 }
-.days-wrapper {
+
+.calendar-days-wrapper {
   border: 1px solid blue;
   width: 100%;
   height: 80%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
+  gap: 2px;
+}
+.calendar-weekDay-nanme {
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
+  font-weight: 500;
 }
 
-.dayCard {
-  width: 14%;
-  height: 20%;
+.calendar-dayCard {
+  width: calc(14.2857% - 4px);
+  height: calc(16.66% - 4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ff4d4d;
+  border-radius: 5px;
+}
+.calendar-dayCard:hover {
+  cursor: pointer;
+  background-color: black;
+}
+.calendar-weekDay-number {
+  margin: 0;
+  padding: 0;
+  color: grey;
+  font-size: 16px;
+}
+
+@media only screen and (max-width: 700px) {
+  .calendar-weekDay-nanme {
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+  }
+  .calendar-weekDay-number {
+    margin: 0;
+    padding: 0;
+    color: grey;
+    font-size: 13px;
+  }
 }

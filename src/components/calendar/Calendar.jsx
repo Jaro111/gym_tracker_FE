@@ -17,7 +17,13 @@ export const Calendar = (props) => {
   //
   return (
     <div className="calendar-wrapper">
-      <MonthPanel dateNow={dateNow} />
+      <MonthPanel
+        dateNow={dateNow}
+        calendarMonth={calendarMonth}
+        calendarYear={calendarYear}
+        setCalendarMonth={setCalendarMonth}
+        setCalendarYear={setCalendarYear}
+      />
       <DaysPanel
         calendarDay={calendarDay}
         calendarMonth={calendarMonth}

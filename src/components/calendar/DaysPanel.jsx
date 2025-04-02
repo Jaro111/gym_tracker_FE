@@ -17,27 +17,67 @@ export const DaysPanel = (props) => {
     const dayOftheWeek = newDate.getDay();
     const dayOftheWeekArray = [6, 0, 1, 2, 3, 4, 5];
     // We want to return mon - sun: 0 -6
-    console.log(dayOftheWeekArray[dayOftheWeek]);
     return dayOftheWeekArray[dayOftheWeek];
   };
 
   // Create all days array from provided month
-  const createDaysArray = (year, month, setter) => {
+  const createDaysArray = (year, month) => {
     const tempArray = [];
     const days = new Date(year, month, 0).getDate();
     for (let i = 1; i <= days; i++) {
       tempArray.push(i);
     }
+    return tempArray;
+  };
 
-    setter(tempArray);
+  // Create array from 3 arrays. Previous month, current and next
+  const createCalendarArray = () => {
+    let finalArray = [];
+    let previousMonth = [];
+    let currentMonth = [];
+    let nextMonth = [];
+
+    previousMonth = createDaysArray(
+      props.calendarYear,
+      props.calendarMonth - 1
+    );
+    currentMonth = createDaysArray(props.calendarYear, props.calendarMonth);
+    nextMonth = createDaysArray(props.calendarYear, props.calendarMonth + 1);
+
+    if (getDayOftheWeek(1) === 0) {
+      const finalArray = currentMonth.concat(
+        nextMonth.slice(0, 42 - currentMonth.length)
+      );
+      setDaysArray(finalArray);
+    } else {
+      const previousAndCurrent = previousMonth
+        .slice(-getDayOftheWeek(1), previousMonth.length)
+        .concat(currentMonth);
+      const finalArray = previousAndCurrent.concat(
+        nextMonth.slice(0, 42 - previousAndCurrent.length)
+      );
+      setDaysArray(finalArray);
+    }
   };
 
   const dayClick = (item) => {
     getDayOftheWeek(item);
   };
-
+  // Color function
+  const dayColorFunc = (index, color) => {
+    const currentMonth = createDaysArray(
+      props.calendarYear,
+      props.calendarMonth
+    );
+    if (
+      index < getDayOftheWeek(1) ||
+      index > currentMonth.length + getDayOftheWeek(1) - 1
+    ) {
+      return "lightgrey";
+    } else return color;
+  };
   useEffect(() => {
-    createDaysArray(props.calendarYear, props.calendarMonth, setDaysArray);
+    createCalendarArray();
   }, [props.calendarMonth, props.calendarYear]);
 
   //
@@ -66,8 +106,16 @@ export const DaysPanel = (props) => {
                   className="calendar-dayCard"
                   key={index}
                   onClick={() => dayClick(item)}
+                  style={{
+                    border: `1px solid ${dayColorFunc(index, "#ff4d4d")}`,
+                  }}
                 >
-                  <p className="calendar-weekDay-number">{item}</p>
+                  <p
+                    style={{ color: dayColorFunc(index, "black") }}
+                    className="calendar-weekDay-number"
+                  >
+                    {item}
+                  </p>
                 </div>
               );
             })

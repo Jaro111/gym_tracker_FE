@@ -1,0 +1,23 @@
+.signUp-wrapper {
+  width: 80%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.signUpForm {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  align-items: center;
+  flex-direction: column;
+}
+
+.toggleLogIn-link {
+  font-size: 15px;
+  text-decoration: underline;
+  color: grey;
+  cursor: pointer;
+}

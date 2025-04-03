@@ -1,4 +1,5 @@
 import React from "react";
+import { signUpUser } from "../../utils/utilsUser";
 import { useState } from "react";
 import "./SignUp.css";
 
@@ -11,9 +12,10 @@ export const SignUp = (props) => {
     setter(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(username, email, password);
+    const user = await signUpUser(username, email, password);
+    console.log(user);
   };
 
   return (

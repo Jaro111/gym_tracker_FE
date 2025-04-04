@@ -1,8 +1,13 @@
 import React from "react";
+import { logIn } from "../../utils/utilsUser";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./LogIn.css";
 
 export const LogIn = (props) => {
+  //
+  const navigate = useNavigate();
+  //
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -10,9 +15,12 @@ export const LogIn = (props) => {
     setter(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(username, password);
+    const data = await logIn(username, password);
+    if (data.username) {
+      navigate("/");
+    }
   };
 
   return (
@@ -29,7 +37,7 @@ export const LogIn = (props) => {
           className="sign-input"
         ></input>
         <button type="submit" className="signButton">
-          Sign Up
+          Log In
         </button>
       </form>
       <p

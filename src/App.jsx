@@ -59,7 +59,6 @@ function App() {
       }}
     >
       <BrowserRouter basename="">
-        <p>{user.username}</p>
         <NavbarPanel />
         <Routes>
           <Route path="" element={<CalendarPage dateNow={dateNow} />} />

@@ -28,12 +28,16 @@
   box-sizing: border-box;
   flex-wrap: wrap;
 }
-.nav-link {
+.nav-link,
+.log-out-link {
   width: fit-content;
   height: fit-content;
   text-decoration: none;
   color: #f86a6a;
   margin: 10px 20px 10px 20px;
+}
+.log-out-link:hover {
+  cursor: pointer;
 }
 a.active {
   color: lightgray;

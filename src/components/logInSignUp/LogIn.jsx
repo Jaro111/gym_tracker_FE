@@ -1,10 +1,13 @@
 import React from "react";
 import { logIn } from "../../utils/utilsUser";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { userContext } from "../../common/context";
 import { useNavigate } from "react-router-dom";
 import "./LogIn.css";
 
 export const LogIn = (props) => {
+  //
+  const setUser = useContext(userContext).setUser;
   //
   const navigate = useNavigate();
   //
@@ -18,9 +21,8 @@ export const LogIn = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = await logIn(username, password);
-    if (data.username) {
-      navigate("/");
-    }
+    setUser(data);
+    navigate("/");
   };
 
   return (

@@ -35,7 +35,12 @@ export const logIn = async (username, password) => {
 
   const data = await res.json();
   const userData = data.user;
-  Cookies.set("jwt-token", userData.token, { expires: 30, path: "/" });
+  Cookies.set("jwt-token", userData.token, {
+    expires: 7,
+    // path: "/",
+    secure: true,
+    sameSite: "None",
+  });
 
   return userData;
 };

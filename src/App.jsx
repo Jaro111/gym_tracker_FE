@@ -37,7 +37,6 @@ function App() {
     const persUser = await authCheck(token);
     persUser.user["token"] = token;
     setUser(persUser.user);
-    console.log(persUser);
   };
   //
   useEffect(() => {
@@ -49,7 +48,7 @@ function App() {
         logInWithToken(token);
       }
     }
-  }, [user.username]);
+  }, []);
   //
   return (
     <userContext.Provider

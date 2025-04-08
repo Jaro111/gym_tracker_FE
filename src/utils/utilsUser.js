@@ -37,9 +37,6 @@ export const logIn = async (username, password) => {
   const userData = data.user;
   Cookies.set("jwt-token", userData.token, {
     expires: 7,
-    // path: "/",
-    secure: true,
-    sameSite: "None",
   });
 
   return userData;

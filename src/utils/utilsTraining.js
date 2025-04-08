@@ -24,7 +24,6 @@ export const getAllTrainings = async (jwt) => {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${jwt}`,
-      mode: "cors",
     },
   });
 

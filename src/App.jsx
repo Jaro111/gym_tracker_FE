@@ -33,7 +33,7 @@ function App() {
     year: yearNow,
   });
   //
-  const logInWithToken = async (token) => {
+  const logInWithToken = async (token, setUser) => {
     const persUser = await authCheck(token);
     persUser.user["token"] = token;
     setUser(persUser.user);
@@ -45,18 +45,13 @@ function App() {
       if (token === false) {
         setUser({});
       } else {
-        logInWithToken(token);
+        logInWithToken(token, setUser);
       }
     }
   }, []);
   //
   return (
-    <userContext.Provider
-      value={{
-        user,
-        setUser,
-      }}
-    >
+    <userContext.Provider value={{ user, setUser }}>
       <BrowserRouter basename="">
         <NavbarPanel />
         <Routes>

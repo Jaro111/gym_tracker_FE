@@ -1,8 +1,7 @@
 import React from "react";
 import { getAllExercisexTemplate } from "../../utils/exerciseTemplate";
-import { useEffect } from "react";
+import { useEffect, useEffect } from "react";
 import "./ExerciseTemplatePanel.css";
-
 export const ExerciseTemplatePanel = (props) => {
   //
   const { exerciseList, setExerciseList, newExercise } = props;

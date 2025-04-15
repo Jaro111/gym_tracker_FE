@@ -1,5 +1,8 @@
 import React from "react";
-import { getAllExercisexTemplate } from "../../utils/exerciseTemplate";
+import {
+  getAllExercisexTemplate,
+  deleteExercise,
+} from "../../utils/exerciseTemplate";
 import { MdOutlineModeEdit } from "react-icons/md";
 import { RiDeleteBin2Line } from "react-icons/ri";
 import { useEffect, useState, useContext } from "react";
@@ -13,6 +16,9 @@ export const ExerciseTemplatePanel = (props) => {
   const user = useContext(userContext).user;
   //
   const [isEditModalVisible, setIsEditModalVisible] = useState(false);
+  const [numberOfExercises, setNumberOfExercises] = useState(
+    exerciseList.length
+  );
   const [updateData, setUpdateData] = useState({
     name: "",
     id: 0,
@@ -33,6 +39,7 @@ export const ExerciseTemplatePanel = (props) => {
       console.log(data);
     }
   };
+
   const openEditModal = (item) => {
     setIsEditModalVisible(true);
     updateData.name = item.name;
@@ -44,10 +51,15 @@ export const ExerciseTemplatePanel = (props) => {
     updateData.repsTo = item.repsTo;
   };
 
+  const deleteExerciseFunc = async (item) => {
+    const data = await deleteExercise(user.token, item.id, item.trainingId);
+    setNumberOfExercises(numberOfExercises - 1);
+  };
+
   //
   useEffect(() => {
     getExercises();
-  }, [props.trainingId, newExercise, updateData.sets]);
+  }, [props.trainingId, newExercise, updateData.sets, numberOfExercises]);
   //
   return (
     <div className="exerciseTemplatePanel-wrapper">
@@ -94,8 +106,14 @@ export const ExerciseTemplatePanel = (props) => {
                   )}
                 </div>
                 <div className="exerciseTemplatePanel-item-icons">
-                  <MdOutlineModeEdit onClick={() => openEditModal(item)} />
-                  <RiDeleteBin2Line />
+                  <MdOutlineModeEdit
+                    className="exerciseTemplatePanel-edit-icon"
+                    onClick={() => openEditModal(item)}
+                  />
+                  <RiDeleteBin2Line
+                    onClick={() => deleteExerciseFunc(item)}
+                    className="exerciseTemplatePanel-delete-icon"
+                  />
                 </div>
               </div>
             );

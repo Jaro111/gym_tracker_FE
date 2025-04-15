@@ -67,3 +67,20 @@ export const addSetsReps = async (
   const data = res.json();
   return data;
 };
+
+export const deleteExercise = async (jwt, id, trainingId) => {
+  const res = await fetch(`${url}/exercises/deleteExercise`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${jwt}`,
+    },
+    body: JSON.stringify({
+      id: id,
+      trainingId: trainingId,
+    }),
+  });
+
+  const data = await res.json();
+  return data;
+};

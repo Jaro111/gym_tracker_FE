@@ -45,15 +45,12 @@ export const UpdateExerciseMOdal = (props) => {
       }
       updateData.repsFrom = repsFrom;
       updateData.repsTo = repsTo;
-      console.log(data);
     }
     props.setIsEditModalVisible(false);
   };
 
   const changeHandler = (e, setter) => {
     setter(e.target.value);
-    console.log("repsFrom", repsFrom);
-    console.log("repsTo", repsTo);
   };
 
   return (

@@ -68,6 +68,7 @@ export const addSetsReps = async (
   return data;
 };
 
+// delete Exercise
 export const deleteExercise = async (jwt, id, trainingId) => {
   const res = await fetch(`${url}/exercises/deleteExercise`, {
     method: "DELETE",
@@ -79,6 +80,21 @@ export const deleteExercise = async (jwt, id, trainingId) => {
       id: id,
       trainingId: trainingId,
     }),
+  });
+
+  const data = await res.json();
+  return data;
+};
+
+// Get stets counted
+
+export const getSetCount = async (jwt, idString) => {
+  const res = await fetch(`${url}/exercises/getSetCount/${idString}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${jwt}`,
+    },
   });
 
   const data = await res.json();

@@ -12,7 +12,13 @@ import { UpdateExerciseMOdal } from "../updateExerciseModal/UpdateExeriseModal";
 import "./ExerciseTemplatePanel.css";
 export const ExerciseTemplatePanel = (props) => {
   //
-  const { exerciseList, setExerciseList, newExercise } = props;
+  const {
+    exerciseList,
+    setExerciseList,
+    newExercise,
+    updateSets,
+    setUpdateSets,
+  } = props;
   const user = useContext(userContext).user;
   //
   const [isEditModalVisible, setIsEditModalVisible] = useState(false);
@@ -28,7 +34,7 @@ export const ExerciseTemplatePanel = (props) => {
     repsFrom: 0,
     repsTo: 0,
   });
-  //
+
   const getExercises = async () => {
     if (props.trainingId) {
       const data = await getAllExercisexTemplate(
@@ -54,12 +60,13 @@ export const ExerciseTemplatePanel = (props) => {
   const deleteExerciseFunc = async (item) => {
     const data = await deleteExercise(user.token, item.id, item.trainingId);
     setNumberOfExercises(numberOfExercises - 1);
+    setUpdateSets(updateSets + 1);
   };
 
   //
   useEffect(() => {
     getExercises();
-  }, [props.trainingId, newExercise, updateData.sets, numberOfExercises]);
+  }, [props.trainingId, newExercise, numberOfExercises, updateData.sets]);
   //
   return (
     <div className="exerciseTemplatePanel-wrapper">
@@ -69,7 +76,8 @@ export const ExerciseTemplatePanel = (props) => {
           isEditModalVisible={isEditModalVisible}
           setIsEditModalVisible={setIsEditModalVisible}
           updateData={updateData}
-          setUpdateData={setUpdateData}
+          updateSets={updateSets}
+          setUpdateSets={setUpdateSets}
         />
       )}
       {exerciseList.length > 0

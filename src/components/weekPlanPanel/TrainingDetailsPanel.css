@@ -1,0 +1,18 @@
+.trainingDetailsPanel-wrapper {
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.trainingDetailsPanel-btns-wrapper {
+  width: 60%;
+  height: 50px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 2px solid grey;
+  border-radius: 10px;
+}

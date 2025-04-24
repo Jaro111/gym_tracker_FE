@@ -14,7 +14,6 @@ export const TrainingOptions = ({ trainingId, setTrainingId }) => {
   const fetchTrainings = async (jwt) => {
     if (user.token) {
       const trainings = await getAllTrainings(jwt);
-      // console.log(trainings);
       setTrainings(trainings.trainings || []);
       if (!trainingId) {
         setTrainingId(trainings.trainings[0].id);

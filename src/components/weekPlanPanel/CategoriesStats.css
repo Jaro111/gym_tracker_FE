@@ -1,0 +1,9 @@
+.categoriesStats-wrapper {
+  border: 1px solid grey;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
+.categoriesStats-item-wrapper {
+  display: flex;
+}

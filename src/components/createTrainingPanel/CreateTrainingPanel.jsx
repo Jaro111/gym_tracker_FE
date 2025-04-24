@@ -7,7 +7,7 @@ import { userContext } from "../../common/context";
 import { useState, useEffect, useContext } from "react";
 import "./CreateTrainingPanel.css";
 
-export const CreateTrainingPanel = () => {
+export const CreateTrainingPanel = (props) => {
   //
   const [trainingId, setTrainingId] = useState(null);
   const [trainingName, setTrainingName] = useState(null);
@@ -17,9 +17,7 @@ export const CreateTrainingPanel = () => {
     fetchTrainings(user.token);
   };
 
-  useEffect(() => {
-    // console.log(trainingId);
-  }, [user.token]);
+  useEffect(() => {}, [user.token]);
 
   //
   return (

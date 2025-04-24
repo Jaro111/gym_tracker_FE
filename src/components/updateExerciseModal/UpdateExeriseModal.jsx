@@ -6,7 +6,7 @@ import "./UpdateExerciseMOdal.css";
 
 export const UpdateExerciseMOdal = (props) => {
   //
-  const { updateData, user } = props;
+  const { updateData, user, updateSets, setUpdateSets } = props;
   const [constRange, setConstRange] = useState(true);
   const [sets, setSets] = useState(updateData.sets);
   const [reps, setReps] = useState(updateData.reps);
@@ -47,6 +47,7 @@ export const UpdateExerciseMOdal = (props) => {
       updateData.repsTo = repsTo;
     }
     props.setIsEditModalVisible(false);
+    setUpdateSets(updateSets + 1);
   };
 
   const changeHandler = (e, setter) => {

@@ -45,3 +45,17 @@ export const getTraining = async (id, jwt) => {
   const data = await res.json();
   return data;
 };
+
+// Get training ids and names
+export const getTrainingIdsNames = async (jwt) => {
+  const res = await fetch(`${url}/training/getTrainingNamesAndIds`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${jwt}`,
+    },
+  });
+
+  const data = await res.json();
+  return data;
+};

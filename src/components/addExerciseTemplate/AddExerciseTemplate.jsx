@@ -10,7 +10,7 @@ import "./AddExerciseTemplate.css";
 export const AddExerciseTemplatePanel = (props) => {
   //
   const user = useContext(userContext).user;
-  const { trainingId } = props;
+  const { trainingId, updateSets, setUpdateSets } = props;
   //
   const [exerciseData, setExerciseData] = useState([]);
   const [chosenExercise, setChosenExercise] = useState({});
@@ -53,6 +53,8 @@ export const AddExerciseTemplatePanel = (props) => {
         exerciseList={exerciseList}
         setExerciseList={setExerciseList}
         newExercise={newExercise}
+        updateSets={updateSets}
+        setUpdateSets={setUpdateSets}
       />
     </div>
   );

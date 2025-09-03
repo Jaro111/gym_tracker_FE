@@ -24,8 +24,9 @@ export const CategoriesStats = (props) => {
       {stats.map((item, index) => {
         return (
           <div key={index} className="categoriesStats-item-wrapper">
-            <p>
-              {item.category}: {item.sets}
+            <p className="categoriesStats-content">
+              {item.category}:{" "}
+              <span className="categoriesStats-sets-content">{item.sets}</span>
             </p>
           </div>
         );

@@ -7,3 +7,12 @@
 .categoriesStats-item-wrapper {
   display: flex;
 }
+
+.categoriesStats-content {
+  font-size: 12px;
+}
+
+.categoriesStats-sets-content {
+  color: red;
+  font-weight: 500;
+}

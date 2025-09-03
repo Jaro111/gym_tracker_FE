@@ -30,3 +30,18 @@ export const getWeekPlan = async (jwt) => {
   const data = await res.json();
   return data;
 };
+// remove
+export const removeTrainingFromPlan = async (jwt, trainingId) => {
+  const res = await fetch(`${url}/weekPlan/removeTraining`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${jwt}`,
+    },
+    body: JSON.stringify({
+      trainingId: trainingId,
+    }),
+  });
+  const data = await res.json();
+  return data;
+};

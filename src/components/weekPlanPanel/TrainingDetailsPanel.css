@@ -16,3 +16,14 @@
   border: 2px solid grey;
   border-radius: 10px;
 }
+
+.trainingDetailsPanel-trainingBtn-wrapper {
+  width: fit-content;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.trainingDetailsPanel-delete-icon {
+  margin-left: 5px;
+}

@@ -34,13 +34,11 @@ export const WeekPlanPanel = (props) => {
     });
     setTrainingIds(tempArray);
     setTrainingsString(tempArray.toString());
-    console.log(trainingsString);
     setTrainingsList(data.weekPlan || []);
   };
   //
   //
   useEffect(() => {
-    console.log("Update", updateSets);
     if (user.username) {
       fetchWeekPlan();
     }
@@ -48,11 +46,12 @@ export const WeekPlanPanel = (props) => {
 
   return (
     <div className="weekPlanPanel-wrapper">
+      <p>Week plan Simulation</p>
       <TrainingOptions trainingId={trainingId} setTrainingId={setTrainingId} />
       <button onClick={addTraining} className="weekPlan-addTraining-btn">
         ADD TO WEEK PLAN
       </button>
-      <p>Week plan Simulation</p>
+
       <TrainingDetailsPanel
         trainingsList={trainingsList}
         trainingListLength={trainingListLength}

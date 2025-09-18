@@ -42,7 +42,6 @@ export const ExerciseTemplatePanel = (props) => {
         props.user.token
       );
       setExerciseList(data.exercises || []);
-      console.log(data);
     }
   };
 

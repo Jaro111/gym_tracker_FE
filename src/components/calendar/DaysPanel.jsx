@@ -1,12 +1,23 @@
 import React from "react";
+import { getAllTrainingDays } from "../../utils/trainingDay.js";
+import { AddTrainingModal } from "./AddTrainingModal.jsx";
 import { weekDays } from "../../data/monthsWeekdays.js";
 import { months } from "../../data/monthsWeekdays.js";
 import { useEffect, useState } from "react";
 import "./DaysPanel.css";
 
 export const DaysPanel = (props) => {
+  //
   const [daysArray, setDaysArray] = useState([]);
-  const [tempDay, setTempDay] = useState(null);
+  const [trainingDayDate, setTrainingDayDate] = useState(null);
+  const [isAddTrainingModalVisible, setIsAddTrainingModalVisible] =
+    useState(false);
+  const { chosenDateString, setChosenDateString, user } = props;
+  //
+  // Fetch functions
+  const fetchTrainingDays = async () => {
+    const data = await getAllTrainingDays(user.token);
+  };
 
   // get number of the week day number providing a day.
   const getDayOftheWeek = (day) => {
@@ -61,7 +72,8 @@ export const DaysPanel = (props) => {
   };
 
   const dayClick = (item) => {
-    getDayOftheWeek(item);
+    setTrainingDayDate(`${item}-${props.calendarMonth}-${props.calendarDay}`);
+    setIsAddTrainingModalVisible(!isAddTrainingModalVisible);
   };
   // Color function
   const dayColorFunc = (index, color) => {
@@ -78,7 +90,10 @@ export const DaysPanel = (props) => {
   };
   useEffect(() => {
     createCalendarArray();
-  }, [props.calendarMonth, props.calendarYear]);
+    if (user.username) {
+      fetchTrainingDays();
+    }
+  }, [props.calendarMonth, props.calendarYear, user.username]);
 
   //
   return (
@@ -99,6 +114,12 @@ export const DaysPanel = (props) => {
       </div>
 
       <div className="calendar-days-wrapper">
+        {isAddTrainingModalVisible && (
+          <AddTrainingModal
+            setIsAddTrainingModalVisible={setIsAddTrainingModalVisible}
+            trainingDayDate={trainingDayDate}
+          />
+        )}
         {daysArray.length > 0
           ? daysArray.map((item, index) => {
               return (

@@ -1,0 +1,68 @@
+.AddTrainingModal-wrapper {
+  position: absolute;
+  left: 35%;
+  top: 20%;
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  height: fit-content;
+  background-color: rgba(87, 86, 86, 0.973);
+  border: 1px solid red;
+  color: white;
+}
+
+.AddTrainingModal-close-wrapper {
+  width: 98%;
+  height: 8%;
+}
+
+.AddTrainingModal-close-icon {
+  height: 25px;
+  width: 25px;
+  color: red;
+}
+/* .AddTainingModal-TrainingOptions-wrapper {
+} */
+/* .updateExerciseMOdal-wrapper {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background-color: rgba(87, 86, 86, 0.973);
+  border: 1px solid red;
+  color: white;
+}
+
+.updateExerciseMOdal-close-wrapper {
+  width: 98%;
+  height: 8%;
+}
+
+.updateExerciseMOdal-close-icon {
+  height: 25px;
+  width: 25px;
+  color: red;
+}
+
+.updateExerciseMOdal-edit-wrapper {
+  width: 98%;
+  height: 92%;
+  background-color: rgba(0, 0, 0, 0.397);
+}
+
+.updateExerciseMOdal-item-data-content {
+  margin: 8px 3px 8px 5px;
+}
+.updateExerciseMOdal-input-wrapper {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.updateExerciseMOdal-item-data-input {
+  width: 20px;
+  height: 20px;
+  background-color: lightgray;
+  margin: 0 5px 0 5px;
+  padding: 0;
+} */

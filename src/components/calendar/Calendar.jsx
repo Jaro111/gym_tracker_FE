@@ -13,6 +13,7 @@ export const Calendar = (props) => {
   const [calendarDay, setCalendarDay] = useState(dateNow.day);
   const [calendarMonth, setCalendarMonth] = useState(dateNow.month);
   const [calendarYear, setCalendarYear] = useState(dateNow.year);
+  const [chosenDateString, setChosenDateString] = useState("");
 
   useEffect(() => {}, [user.username]);
 
@@ -31,6 +32,9 @@ export const Calendar = (props) => {
         calendarDay={calendarDay}
         calendarMonth={calendarMonth}
         calendarYear={calendarYear}
+        chosenDateString={chosenDateString}
+        setChosenDateString={setChosenDateString}
+        user={user}
       />
     </div>
   );

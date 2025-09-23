@@ -1,5 +1,7 @@
 import React from "react";
 import { getAllTrainingDays } from "../../utils/trainingDay.js";
+import { useNavigate } from "react-router-dom";
+import { getDate } from "../../common/functions.js";
 import { AddTrainingModal } from "./AddTrainingModal.jsx";
 import { weekDays } from "../../data/monthsWeekdays.js";
 import { months } from "../../data/monthsWeekdays.js";
@@ -10,13 +12,27 @@ export const DaysPanel = (props) => {
   //
   const [daysArray, setDaysArray] = useState([]);
   const [trainingDayDate, setTrainingDayDate] = useState(null);
+  const [trainingDays, setTrainingDays] = useState(null);
   const [isAddTrainingModalVisible, setIsAddTrainingModalVisible] =
     useState(false);
   const { chosenDateString, setChosenDateString, user } = props;
   //
+  const navigate = useNavigate();
+  //
+  const createArrayObject = (monthArray, arrayObject, m, y) => {
+    monthArray.map((item) =>
+      arrayObject.push({
+        day: item,
+        month: m,
+        year: y,
+      })
+    );
+    return;
+  };
   // Fetch functions
   const fetchTrainingDays = async () => {
     const data = await getAllTrainingDays(user.token);
+    setTrainingDays(data.trainingDays);
   };
 
   // get number of the week day number providing a day.
@@ -40,13 +56,15 @@ export const DaysPanel = (props) => {
     }
     return tempArray;
   };
-
+  // ---------------------------------------------------------------------
   // Create array from 3 arrays. Previous month, current and next
+
   const createCalendarArray = () => {
-    let finalArray = [];
     let previousMonth = [];
     let currentMonth = [];
     let nextMonth = [];
+    let tempArrayObjects = [];
+    let tempYear = props.calendarYear;
 
     previousMonth = createDaysArray(
       props.calendarYear,
@@ -56,25 +74,95 @@ export const DaysPanel = (props) => {
     nextMonth = createDaysArray(props.calendarYear, props.calendarMonth + 1);
 
     if (getDayOftheWeek(1) === 0) {
-      const finalArray = currentMonth.concat(
-        nextMonth.slice(0, 42 - currentMonth.length)
+      createArrayObject(
+        currentMonth,
+        tempArrayObjects,
+        props.calendarMonth,
+        tempYear
       );
-      setDaysArray(finalArray);
+      if (props.calendarMonth === 12) {
+        createArrayObject(
+          nextMonth.slice(0, 42 - currentMonth.length),
+          tempArrayObjects,
+          1,
+          tempYear + 1
+        );
+      } else {
+        createArrayObject(
+          nextMonth.slice(0, 42 - currentMonth.length),
+          tempArrayObjects,
+          props.calendarMonth + 1,
+          tempYear
+        );
+      }
+
+      setDaysArray(tempArrayObjects);
     } else {
-      const previousAndCurrent = previousMonth
-        .slice(-getDayOftheWeek(1), previousMonth.length)
-        .concat(currentMonth);
-      const finalArray = previousAndCurrent.concat(
-        nextMonth.slice(0, 42 - previousAndCurrent.length)
+      if (props.calendarMonth === 1) {
+        createArrayObject(
+          previousMonth.slice(-getDayOftheWeek(1), previousMonth.length),
+          tempArrayObjects,
+          12,
+          tempYear - 1
+        );
+      } else {
+        createArrayObject(
+          previousMonth.slice(-getDayOftheWeek(1), previousMonth.length),
+          tempArrayObjects,
+          props.calendarMonth - 1,
+          tempYear
+        );
+      }
+      createArrayObject(
+        currentMonth,
+        tempArrayObjects,
+        props.calendarMonth,
+        tempYear
       );
-      setDaysArray(finalArray);
+      //
+      if (props.calendarMonth === 12) {
+        createArrayObject(
+          nextMonth.slice(0, 42 - tempArrayObjects.length),
+          tempArrayObjects,
+          1,
+          tempYear + 1
+        );
+      } else {
+        createArrayObject(
+          nextMonth.slice(0, 42 - tempArrayObjects.length),
+          tempArrayObjects,
+          props.calendarMonth + 1,
+          tempYear
+        );
+      }
+
+      setDaysArray(tempArrayObjects);
     }
   };
-
+  // ---------------------------------------------------------------------
+  // Day click function
   const dayClick = (item) => {
-    setTrainingDayDate(`${item}-${props.calendarMonth}-${props.calendarDay}`);
-    setIsAddTrainingModalVisible(!isAddTrainingModalVisible);
+    setTrainingDayDate(
+      `${props.calendarYear}-${props.calendarMonth}-${item.day}`
+    );
+    if (trainingDays) {
+      const result = trainingDays.filter((day) => {
+        return day.date === getDate(props.calendarYear, item.month, item.day);
+      });
+      result.length > 0
+        ? goToTraining(day)
+        : setIsAddTrainingModalVisible(true);
+    } else {
+      setIsAddTrainingModalVisible(true);
+    }
   };
+  //
+  const goToTraining = (day) => {
+    navigate("/myCurrentWorkout", {
+      state: { training: day },
+    });
+  };
+
   // Color function
   const dayColorFunc = (index, color) => {
     const currentMonth = createDaysArray(
@@ -88,12 +176,18 @@ export const DaysPanel = (props) => {
       return "lightgrey";
     } else return color;
   };
+  //
   useEffect(() => {
     createCalendarArray();
     if (user.username) {
       fetchTrainingDays();
     }
-  }, [props.calendarMonth, props.calendarYear, user.username]);
+  }, [
+    props.calendarMonth,
+    props.calendarYear,
+    user.username,
+    isAddTrainingModalVisible,
+  ]);
 
   //
   return (
@@ -116,6 +210,7 @@ export const DaysPanel = (props) => {
       <div className="calendar-days-wrapper">
         {isAddTrainingModalVisible && (
           <AddTrainingModal
+            user={user}
             setIsAddTrainingModalVisible={setIsAddTrainingModalVisible}
             trainingDayDate={trainingDayDate}
           />
@@ -128,15 +223,44 @@ export const DaysPanel = (props) => {
                   key={index}
                   onClick={() => dayClick(item)}
                   style={{
-                    border: `1px solid ${dayColorFunc(index, "#ff4d4d")}`,
+                    border: !(item.day === props.calendarDay)
+                      ? `1px solid ${dayColorFunc(index, "#ff4d4d")}`
+                      : "1px solid black",
+                    backgroundColor: !(item.day === props.calendarDay)
+                      ? `white`
+                      : "lightgrey",
                   }}
                 >
                   <p
                     style={{ color: dayColorFunc(index, "black") }}
                     className="calendar-weekDay-number"
                   >
-                    {item}
+                    {item.day}
                   </p>
+
+                  <div className="calendar-dayCard-trainingName-wrapper">
+                    {trainingDays
+                      ? trainingDays.map((day, index2) => {
+                          return day.date ===
+                            getDate(
+                              props.calendarYear,
+                              item.month,
+                              item.day
+                            ) ? (
+                            <div
+                              key={index2}
+                              className="calendar-weekDay-trainingName-content-wrapper"
+                              onClick={() => goToTraining(day)}
+                            >
+                              <p className="calendar-weekDay-trainingName">
+                                {" "}
+                                {day.trainingName}
+                              </p>
+                            </div>
+                          ) : null;
+                        })
+                      : null}
+                  </div>
                 </div>
               );
             })

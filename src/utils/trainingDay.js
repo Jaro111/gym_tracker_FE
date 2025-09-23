@@ -10,5 +10,24 @@ export const getAllTrainingDays = async (jwt) => {
   });
 
   const data = await res.json();
-  console.log(data);
+  return data;
+};
+
+// Add training Day
+
+export const addTrainingDay = async (jwt, date, trainingId) => {
+  const res = await fetch(`${url}/day/addTrainingDay`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${jwt}`,
+    },
+    body: JSON.stringify({
+      date: date,
+      trainingId: trainingId,
+    }),
+  });
+
+  const data = res.json();
+  return data;
 };

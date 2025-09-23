@@ -9,11 +9,15 @@
   background-color: rgba(87, 86, 86, 0.973);
   border: 1px solid red;
   color: white;
+  z-index: 900;
 }
 
 .AddTrainingModal-close-wrapper {
   width: 98%;
   height: 8%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .AddTrainingModal-close-icon {
@@ -21,8 +25,20 @@
   width: 25px;
   color: red;
 }
-/* .AddTainingModal-TrainingOptions-wrapper {
-} */
+.AddTainingModal-TrainingOptions-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.AddTainingModal-date-content {
+  margin: 0;
+  padding: 0;
+}
+
+.AddTainingModal-addBtn {
+  margin: 10px 0 10px 0;
+}
 /* .updateExerciseMOdal-wrapper {
   position: absolute;
   width: 300px;

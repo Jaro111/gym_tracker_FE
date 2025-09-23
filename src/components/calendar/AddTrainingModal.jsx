@@ -1,19 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { TrainingOptions } from "../trainingOptions/TrainingOptions";
+import { addTrainingDay } from "../../utils/trainingDay";
 import { IoIosClose } from "react-icons/io";
 import "./AddTrainingModal.css";
 
 export const AddTrainingModal = (props) => {
   //
   const [trainingId, setTrainingId] = useState(null);
-  const { setIsAddTrainingModalVisible, trainingDayDate } = props;
+  const { setIsAddTrainingModalVisible, trainingDayDate, user } = props;
   //
   const closeModal = () => {
     setIsAddTrainingModalVisible(false);
   };
-  const addTrainingDay = () => {
-    console.log(trainingId);
+  const addTrainingClick = async () => {
+    const data = await addTrainingDay(
+      user.token,
+      trainingDayDate,
+      Number(trainingId)
+    );
+    console.log(data);
+    setIsAddTrainingModalVisible(false);
   };
+
+  useEffect(() => {
+    console.log(trainingId);
+  }, []);
   return (
     <div className="AddTrainingModal-wrapper">
       <div className="AddTrainingModal-close-wrapper">
@@ -24,7 +35,7 @@ export const AddTrainingModal = (props) => {
       </div>
       <div className="AddTainingModal-TrainingOptions-wrapper">
         <div>
-          <p>{trainingDayDate}</p>
+          <p className="AddTainingModal-date-content">{trainingDayDate}</p>
           <TrainingOptions
             trainingId={trainingId}
             setTrainingId={setTrainingId}
@@ -32,7 +43,9 @@ export const AddTrainingModal = (props) => {
         </div>
       </div>
       <div>
-        <button onClick={addTrainingDay}>ADD</button>
+        <button className="AddTainingModal-addBtn" onClick={addTrainingClick}>
+          ADD
+        </button>
       </div>
     </div>
   );

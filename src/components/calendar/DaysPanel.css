@@ -46,11 +46,12 @@
 }
 
 .calendar-dayCard {
+  position: relative;
   width: calc(14.2857% - 4px);
   height: calc(16.66% - 4px);
   display: flex;
-  justify-content: center;
   align-items: center;
+  flex-direction: column;
   border-radius: 5px;
 }
 .calendar-dayCard:hover {
@@ -58,10 +59,34 @@
   background-color: black;
 }
 .calendar-weekDay-number {
-  margin: 0;
+  margin: 3px 0 5px 0;
   padding: 0;
   color: grey;
   font-size: 16px;
+}
+
+.calendar-dayCard-trainingName-wrapper {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.calendar-weekDay-trainingName-content-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.calendar-weekDay-trainingName {
+  background-color: rgb(56, 24, 9);
+  border: 1px solid rgb(61, 54, 54);
+  color: aliceblue;
+  margin: 30px 5px 0 5px;
+  padding: 0;
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 500;
 }
 
 @media only screen and (max-width: 700px) {

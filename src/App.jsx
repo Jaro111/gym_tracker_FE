@@ -7,7 +7,6 @@ import { NavbarPanel } from "./components/navbarPanel/NavbarPanel";
 import { CalendarPage } from "./pages/CalendarPage";
 import { WeekPlanPage } from "./pages/WeekPlanPage";
 import { CreateTraining } from "./pages/CreateTraining";
-import { SchedulePage } from "./pages/SchedulePage";
 import { MyCurrentWorkout } from "./pages/MyCurrentWorkout";
 // import { UserPage } from "./pages/UserPage";
 import { Footer } from "./components/footer/Footer";
@@ -59,7 +58,7 @@ function App() {
           <Route path="/myCurrentWorkout" element={<MyCurrentWorkout />} />
           <Route path="/createTraining" element={<CreateTraining />} />
           <Route path="/weekPlanPage" element={<WeekPlanPage />} />
-          <Route path="/schedulePage" element={<SchedulePage />} />
+          {/* <Route path="/schedulePage" element={<SchedulePage />} /> */}
           <Route path="/register" element={<Register />} />
         </Routes>
         <Footer />

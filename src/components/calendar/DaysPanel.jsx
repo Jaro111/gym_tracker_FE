@@ -32,6 +32,7 @@ export const DaysPanel = (props) => {
   // Fetch functions
   const fetchTrainingDays = async () => {
     const data = await getAllTrainingDays(user.token);
+    console.log(data);
     setTrainingDays(data.trainingDays);
   };
 
@@ -252,7 +253,10 @@ export const DaysPanel = (props) => {
                               className="calendar-weekDay-trainingName-content-wrapper"
                               onClick={() => goToTraining(day)}
                             >
-                              <p className="calendar-weekDay-trainingName">
+                              <p
+                                className="calendar-weekDay-trainingName"
+                                style={{ backgroundColor: day.color }}
+                              >
                                 {" "}
                                 {day.trainingName}
                               </p>

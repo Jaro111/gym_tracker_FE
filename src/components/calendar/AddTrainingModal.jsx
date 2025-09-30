@@ -18,7 +18,6 @@ export const AddTrainingModal = (props) => {
       trainingDayDate,
       Number(trainingId)
     );
-    console.log(data);
     setIsAddTrainingModalVisible(false);
   };
 

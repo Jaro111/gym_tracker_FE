@@ -1,6 +1,6 @@
 import React from "react";
 import { addTraining } from "../../utils/utilsTraining";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./AddTrainingPanel.css";
 
 export const AddTrainingPanel = (props) => {
@@ -15,6 +15,7 @@ export const AddTrainingPanel = (props) => {
     const training = await addTraining(props.trainingName, props.user.token);
     props.setTrainingId(training.training.id);
   };
+
   return (
     <div className="createTraining-newTraining-wrapper">
       <input

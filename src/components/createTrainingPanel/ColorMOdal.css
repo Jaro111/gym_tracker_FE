@@ -1,0 +1,18 @@
+.colorMOdal-wrapper {
+  position: absolute;
+  left: 130%;
+  top: 10%;
+  margin-left: 5px;
+  display: flex;
+  justify-content: space-between;
+  gap: 3px;
+  align-items: center;
+  flex-direction: row;
+}
+
+.colorModal-color {
+  border: 1px solid black;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}

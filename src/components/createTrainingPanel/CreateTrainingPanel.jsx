@@ -24,7 +24,7 @@ export const CreateTrainingPanel = (props) => {
     if (trainingId && user.token) {
       getTrainingById();
     }
-  }, [user.token, trainingId]);
+  }, [user.token, trainingId, mainColor]);
 
   //
   return (
@@ -40,7 +40,11 @@ export const CreateTrainingPanel = (props) => {
           trainingId={trainingId}
           setTrainingId={setTrainingId}
         />
-        <TrainingColors mainColor={mainColor} />
+        <TrainingColors
+          mainColor={mainColor}
+          setMainColor={setMainColor}
+          trainingId={trainingId}
+        />
       </div>
 
       <AddExerciseTemplatePanel trainingId={trainingId} />

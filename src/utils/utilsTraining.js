@@ -59,3 +59,21 @@ export const getTrainingIdsNames = async (jwt) => {
   const data = await res.json();
   return data;
 };
+
+// Update color
+export const updateTrainingColor = async (jwt, id, color) => {
+  const res = await fetch(`${url}/training/updateColor`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${jwt}`,
+    },
+    body: JSON.stringify({
+      id: id,
+      color: color,
+    }),
+  });
+
+  const data = await res.json();
+  return data;
+};

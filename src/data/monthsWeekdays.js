@@ -16,6 +16,4 @@ const months = [
   "December",
 ];
 
-const colors = ["green", "red", "blue", "black", "violet"];
-
-export { weekDays, months, colors };
+export { weekDays, months };

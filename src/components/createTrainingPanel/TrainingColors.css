@@ -1,0 +1,10 @@
+.trainingColors-wrapper {
+  margin-top: 18px;
+}
+
+.trainingColors-mainColor {
+  width: 12px;
+  height: 12px;
+  border-radius: 6px;
+  border: 1px solid black;
+}

@@ -2,6 +2,7 @@ import React from "react";
 import { getAllTrainings } from "../../utils/utilsTraining";
 import { userContext } from "../../common/context";
 import { useState, useEffect, useContext } from "react";
+import "./TrainingOptions.css";
 
 export const TrainingOptions = ({ trainingId, setTrainingId }) => {
   //

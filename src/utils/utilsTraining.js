@@ -33,7 +33,7 @@ export const getAllTrainings = async (jwt) => {
 
 // get training by id
 
-export const getTraining = async (id, jwt) => {
+export const getTraining = async (jwt, id) => {
   const res = await fetch(`${url}/training/getTraining/${id}`, {
     method: "GET",
     headers: {

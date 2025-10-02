@@ -4,6 +4,7 @@ import { CurrentWorkout } from "../components/currentWorkout/CurrentWorkout";
 
 export const MyCurrentWorkout = () => {
   const location = useLocation();
+  console.log(location);
 
   const trainingDetails = location.state;
   return <CurrentWorkout trainingDetails={trainingDetails} />;

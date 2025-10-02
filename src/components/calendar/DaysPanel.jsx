@@ -141,6 +141,12 @@ export const DaysPanel = (props) => {
     }
   };
   // ---------------------------------------------------------------------
+  // Navigate to current workout
+  const goToTraining = (day) => {
+    navigate("/myCurrentWorkout", {
+      state: { training: day },
+    });
+  };
   // Day click function
   const dayClick = (item) => {
     setTrainingDayDate(
@@ -150,18 +156,13 @@ export const DaysPanel = (props) => {
       const result = trainingDays.filter((day) => {
         return day.date === getDate(props.calendarYear, item.month, item.day);
       });
+
       result.length > 0
-        ? goToTraining(day)
+        ? goToTraining(getDate(props.calendarYear, item.month, item.day))
         : setIsAddTrainingModalVisible(true);
     } else {
       setIsAddTrainingModalVisible(true);
     }
-  };
-  //
-  const goToTraining = (day) => {
-    navigate("/myCurrentWorkout", {
-      state: { training: day },
-    });
   };
 
   // Color function
@@ -251,7 +252,7 @@ export const DaysPanel = (props) => {
                             <div
                               key={index2}
                               className="calendar-weekDay-trainingName-content-wrapper"
-                              onClick={() => goToTraining(day)}
+                              // onClick={() => goToTraining(day)}
                             >
                               <p
                                 className="calendar-weekDay-trainingName"

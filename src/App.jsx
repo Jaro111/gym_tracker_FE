@@ -55,7 +55,10 @@ function App() {
         <NavbarPanel />
         <Routes>
           <Route path="" element={<CalendarPage dateNow={dateNow} />} />
-          <Route path="/myCurrentWorkout" element={<MyCurrentWorkout />} />
+          <Route
+            path="/myCurrentWorkout"
+            element={<MyCurrentWorkout dateNow={dateNow} />}
+          />
           <Route path="/createTraining" element={<CreateTraining />} />
           <Route path="/weekPlanPage" element={<WeekPlanPage />} />
           {/* <Route path="/schedulePage" element={<SchedulePage />} /> */}

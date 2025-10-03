@@ -2,10 +2,11 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { CurrentWorkout } from "../components/currentWorkout/CurrentWorkout";
 
-export const MyCurrentWorkout = () => {
+export const MyCurrentWorkout = (props) => {
   const location = useLocation();
-  console.log(location);
+
+  const { dateNow } = props;
 
   const trainingDetails = location.state;
-  return <CurrentWorkout trainingDetails={trainingDetails} />;
+  return <CurrentWorkout trainingDetails={trainingDetails} dateNow={dateNow} />;
 };
